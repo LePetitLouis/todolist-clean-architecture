@@ -1,12 +1,12 @@
 # Example of Clean Architecture (with Redux)
 
-## Get started
+## Setup project
 ```
 npm ci
 npm run start
 ```
 
-## L'organisation
+## Organization
 
 3 Separator: Domain, Infrastructure and Interface.
 
@@ -14,9 +14,9 @@ npm run start
 src
 ├── Domain
 │   ├── Entities (TypeScript Entities)
-│   └── Usecases (Reducers Redux and business function)
+│   └── Usecases (Reducers Redux and Business Function)
 ├── Infrastructure
-│   └── Gateways (API's connection, fetchs)
+│   └── Gateways (API's Connection, Fetchs)
 ├── Store
 └── UserInterface
     ├── Composants
