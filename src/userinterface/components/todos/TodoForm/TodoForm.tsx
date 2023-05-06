@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import { myAddTodo } from "../../../../domain/usecases/todos-slice";
 import { useDispatch } from "../../../../store/store";
 
@@ -14,6 +12,8 @@ const TodoForm = () => {
     const formData = new FormData(form);
 
     dispatch(myAddTodo(formData.get("title") as string));
+
+    form.reset();
   }
 
   return (

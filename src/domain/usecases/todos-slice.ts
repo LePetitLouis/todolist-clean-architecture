@@ -7,7 +7,7 @@ import { api as myTodosApi } from "../../infrastucture";
 const initialState: TodosState = {
   todos: [],
   loading: false,
-  error: null,
+  error: '',
 };
 
 const todosSlice = createSlice({
@@ -24,7 +24,7 @@ const todosSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(myFetchTodos.pending, (state) => {
       state.loading = true;
-      state.error = null;
+      state.error = '';
     });
     builder.addCase(myFetchTodos.fulfilled, (state, action) => {
       state.loading = false;
@@ -32,20 +32,45 @@ const todosSlice = createSlice({
     });
     builder.addCase(myFetchTodos.rejected, (state, action) => {
       state.loading = false;
-      state.error = null;
+      state.error = '';
     });
     builder.addCase(myAddTodo.pending, (state) => {
       state.loading = true;
-      state.error = null;
+      state.error = '';
     });
     builder.addCase(myAddTodo.fulfilled, (state, action) => {
       state.loading = false;
-      console.log('action.payload : ', action.payload);
       state.todos = [...state.todos, action.payload];
     });
     builder.addCase(myAddTodo.rejected, (state, action) => {
       state.loading = false;
-      state.error = null;
+      state.error = action.payload as string;
+    });
+    builder.addCase(myDeleteTodo.pending, (state) => {
+      state.loading = true;
+      state.error = '';
+    });
+    builder.addCase(myDeleteTodo.fulfilled, (state, action) => {
+      state.loading = false;
+      state.todos = state.todos.filter((todo) => todo.id !== action.payload);
+    });
+    builder.addCase(myDeleteTodo.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload as string;
+    });
+    builder.addCase(myUpdateTodo.pending, (state) => {
+      state.loading = true;
+      state.error = '';
+    });
+    builder.addCase(myUpdateTodo.fulfilled, (state, action) => {
+      state.loading = false;
+      state.todos = state.todos.map((todo) =>
+        todo.id === action.payload.id ? action.payload : todo
+      );
+    });
+    builder.addCase(myUpdateTodo.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload as string;
     });
   }
 });
@@ -84,12 +109,55 @@ export const myAddTodo = createAsyncThunk(
   }
 )
 
+export const myDeleteTodo = createAsyncThunk(
+  'todos/myDeleteTodo',
+  async (
+    id: number,
+    { rejectWithValue }: { rejectWithValue: any }
+  ) => {
+    try {
+      await myTodosApi.deleteTodo(id);
+      return id;
+    } catch (error) {
+      console.error('Erreur lors de la suppression du todo  : ', error);
+      return rejectWithValue("Couldn't delete todo");
+    }
+  }
+)
+
+export const myUpdateTodo = createAsyncThunk(
+  'todos/myUpdateTodo',
+  async (
+    { id, title, completed }: { id: number, title: string, completed: boolean },
+    { rejectWithValue }: { rejectWithValue: any }
+  ) => {
+    try {
+      const response = await myTodosApi.updateTodo(
+        id,
+        title,
+        completed
+      );
+      return response;
+    } catch (error) {
+      console.error('Erreur lors de la mise à jour du todo  : ', error);
+      return rejectWithValue("Couldn't update todo");
+    }
+  }
+)
+
 export const { setTodos } = todosSlice.actions;
 
 const selectTodosState = (state: { todos: TodosState }) => state.todos;
+const selectErrorState = (state: { error: TodosState }) => state.error;
+
 export const selectTodos = createSelector(
   selectTodosState,
   ({ todos }) => todos
+);
+
+export const selectError = createSelector(
+  selectErrorState,
+  ({ error }) => error
 );
   
 export default todosSlice.reducer;

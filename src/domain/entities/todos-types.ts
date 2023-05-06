@@ -8,5 +8,5 @@ export type Todo = {
 export type TodosState = {
   todos: Todo[];
   loading: boolean;
-  error: Error | null;
+  error: string;
 };

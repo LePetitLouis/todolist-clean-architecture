@@ -1,7 +1,9 @@
 import { useEffect } from "react";
 
 import { useDispatch, useSelector } from "../../../../store/store";
-import { selectTodos, myFetchTodos } from "../../../../domain/usecases/todos-slice";
+import { selectTodos, myFetchTodos, myDeleteTodo, myUpdateTodo } from "../../../../domain/usecases/todos-slice";
+
+import { Todo } from "../../../../domain/entities/todos-types";
 
 import TodoCard from "../TodoCard/TodoCard";
 import TodoForm from "../TodoForm/TodoForm";
@@ -13,9 +15,18 @@ const TodoList = () => {
     dispatch(myFetchTodos());
   }, [dispatch]);
 
-  const todos = useSelector(selectTodos)
+  const todos = useSelector(selectTodos);
 
-  console.log("TodoList", todos);
+  const deleteTodo = (id: number) => {
+    dispatch(myDeleteTodo(id));
+  }
+
+  const updateTodo = (todo: Todo) => {
+    dispatch(myUpdateTodo({
+      ...todo,
+      completed: !todo.completed
+    }));
+  }
 
   return (
     <section>
@@ -26,8 +37,8 @@ const TodoList = () => {
           <TodoCard
             key={todo.id}
             todo={todo}
-            onToggle={() => { console.log("onToggle", todo.id) }}
-            onDelete={() => { console.log("onDelete", todo.id) }}
+            onToggle={() => updateTodo(todo)}
+            onDelete={() => deleteTodo(todo.id)}
           />
         ))}
       </ul>
