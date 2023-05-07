@@ -1,3 +1,5 @@
+@import '../../../../shared/styles/variables.scss';
+
 .todo-card {
   width: 100%;
   display: flex;
@@ -6,4 +8,9 @@
   padding: 1rem;
   border-bottom: 1px solid rgba(0, 0, 0, .1);
   cursor: pointer;
+
+  h3.completed {
+    text-decoration: line-through;
+    color: $black-lighter;
+  }
 }

@@ -52,7 +52,7 @@ const TodoList = () => {
         ))}
         <li>
           <div className="todo-list__container__settings">
-            <p>{todos.length} item(s) left</p>
+            <p>{todos.filter(filterMap[status]).length} item(s) left</p>
 
             <ul className="todo-list__container__settings--status">
               <li
