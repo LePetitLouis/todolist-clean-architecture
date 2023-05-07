@@ -18,8 +18,9 @@ const TodoForm = () => {
 
     if (!title) return;
 
-    dispatch(myAddTodo(title));
+    dispatch(myAddTodo({ title, completed }));
     setTitle("");
+    setCompleted(false);
   };
 
   return (

@@ -4,12 +4,12 @@ const fetchTodos = async () => {
   return todos;
 };
 
-const addTodo = async (title: string) => {
+const addTodo = async (title: string, completed: boolean) => {
   const response = await fetch("https://jsonplaceholder.typicode.com/todos", {
     method: "POST",
     body: JSON.stringify({
       title,
-      completed: false,
+      completed,
     }),
     headers: {
       "Content-type": "application/json; charset=UTF-8",

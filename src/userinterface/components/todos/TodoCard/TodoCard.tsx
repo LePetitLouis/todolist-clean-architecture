@@ -8,7 +8,7 @@ const TodoCard = ({ todo, onToggle }: { todo: Todo, onToggle: () => void }) => {
   const { title, completed } = todo;
 
   const isCompleted = completed ? 'completed' : '';
-  console.log('isCompleted', isCompleted);
+
   return (
     <div className="todo-card" onClick={onToggle}>
       <InputCheckbox
