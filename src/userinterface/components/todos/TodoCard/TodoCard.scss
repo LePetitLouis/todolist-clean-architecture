@@ -11,6 +11,6 @@
 
   h3.completed {
     text-decoration: line-through;
-    color: $black-lighter;
+    color: var(--font-color-light);
   }
 }

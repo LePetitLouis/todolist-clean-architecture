@@ -1,12 +1,20 @@
-import { createAsyncThunk, createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {
+  createAsyncThunk,
+  createSelector,
+  createSlice,
+  PayloadAction,
+} from "@reduxjs/toolkit";
 
 import { SettingsState } from "../entities/settings-types";
+
+const defaultTheme = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+document.documentElement.setAttribute("data-theme", defaultTheme);
 
 const initialState: SettingsState = {
   loading: false,
   error: "",
   settings: {
-    theme: "light-theme",
+    theme: defaultTheme,
     language: "en",
     notifications: true,
   },
@@ -16,12 +24,9 @@ const settingsSlice = createSlice({
   name: "settings",
   initialState,
   reducers: {
-    setSettings(
-      state,
-      action: PayloadAction<typeof initialState.settings>
-    ) {
+    setSettings(state, action: PayloadAction<typeof initialState.settings>) {
       state.settings = action.payload;
-    }
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(myUpdateTheme.pending, (state) => {
@@ -31,16 +36,13 @@ const settingsSlice = createSlice({
     builder.addCase(myUpdateTheme.fulfilled, (state, action) => {
       state.loading = false;
       state.settings.theme = action.payload;
-      const theme = window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? (state.settings.theme = "dark-theme")
-        : (state.settings.theme = "light-theme");
-      console.log(theme);
+      document.documentElement.setAttribute("data-theme", action.payload);
     });
     builder.addCase(myUpdateTheme.rejected, (state, action) => {
       state.loading = false;
       state.error = "";
     });
-  }
+  },
 });
 
 export const myUpdateTheme = createAsyncThunk(
@@ -51,12 +53,10 @@ export const myUpdateTheme = createAsyncThunk(
   }
 );
 
-const selectThemeState = (state: { settings: SettingsState }) => state.settings.settings.theme;
+const selectThemeState = (state: { settings: SettingsState }) =>
+  state.settings.settings.theme;
 
-export const selectTheme = createSelector(
-  selectThemeState,
-  (theme) => theme
-);
+export const selectTheme = createSelector(selectThemeState, (theme) => theme);
 
 export const { setSettings } = settingsSlice.actions;
 

@@ -1,16 +1,17 @@
-$black-base: #383D3E;
-$black-light:#4E5559;
-$black-lighter:#888888;
-$black-dark:#131616;
-$black-low: #BCBCBC;
+:root {
+  --font-color: #383D3E;
+  --font-color-light: #888888;
+  --font-color-placeholder: #4E5559;
+  --background-color: #FFFFFF;
+  --background-color-light: #E7E9EE;
+  --link-color: #007AFF;
+}
 
-$overlay:#1316166f; // transparent
-$shadow:#1316161d; // transparent
-
-$white: #FFFFFF;
-$white-light: #F5F6F8;
-$white-base: #E7E9EE;
-$white-darker: #F8FBFF;
-$white-dark: #DADDE7;
-
-$blue-base: #007AFF;
+[data-theme="dark"] {
+  --font-color: #FFFFFF;
+  --font-color-light: #888888;
+  --font-color-placeholder: #4E5559;
+  --background-color: #131616;
+  --background-color-light: #383D3E;
+  --link-color: #007AFF;
+}

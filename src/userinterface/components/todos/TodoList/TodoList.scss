@@ -8,6 +8,7 @@
   border-radius: 4px;
   margin: 1rem 0;
   box-shadow: 0 0 1rem rgba(0, 0, 0, .1);
+  background-color: var(--background-color-light);
 
   &__container {
 
@@ -25,10 +26,10 @@
         li {
           cursor: pointer;
           font-weight: 700;
-          color: $black-base;
+          color: var(--font-color);
 
           &.active {
-            color: $blue-base;
+            color: var(--link-color);
           }
         }
       }

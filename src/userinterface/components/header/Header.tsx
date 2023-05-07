@@ -11,15 +11,13 @@ const Header = () => {
   const theme = useSelector(selectTheme);
 
   const toggleTheme = () => {
-    document.body.classList.toggle("dark-theme");
-    console.log(theme);
-    theme === "dark-theme" ? dispatch(myUpdateTheme('light-theme')) : dispatch(myUpdateTheme('dark-theme'));
+    theme === "dark" ? dispatch(myUpdateTheme('light')) : dispatch(myUpdateTheme('dark'));
   };
 
   return (
     <header className="header">
       <h1 className="header__title">TODO</h1>
-      {theme === "dark-theme" ? (
+      {theme === "dark" ? (
         <img
           src={IconMoon}
           alt="Moon icon"

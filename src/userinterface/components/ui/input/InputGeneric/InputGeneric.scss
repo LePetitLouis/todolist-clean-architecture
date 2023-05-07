@@ -1,10 +1,16 @@
+@import "../../../../../shared/styles/variables.scss";
+
 .input-generic {
   width: 100%;
   height: 100%;
   font-size: 14px;
 
   background-color: transparent;
-  color: #4E5559;
+  color: var(--font-color);
   border: none;
   outline: none;
+
+  &::placeholder {
+    color: var(--font-color-placeholder);
+  }
 }
