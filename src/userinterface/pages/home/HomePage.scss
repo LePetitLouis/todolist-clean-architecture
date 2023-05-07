@@ -1,0 +1,22 @@
+.home-page {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+
+  &__banner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 500px;
+    height: 100%;
+    margin: auto;
+  }
+}

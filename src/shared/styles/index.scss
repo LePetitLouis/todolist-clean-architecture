@@ -1,0 +1,70 @@
+@import './reset.scss';
+@import './variables.scss';
+
+:root {
+  --color-background-accent: #{$white-base};
+  --color-text-base: #{$black-base};
+  --color-text-rev-base: #{$white-light};
+}
+
+@media (prefers-color-scheme: dark) {
+  :root.dark {
+    --color-background-base: #{$black-base};
+    --color-text-base: #{$white-light};
+    --color-text-rev-base: #{$black-base};
+  }
+}
+
+:root.dark {
+  --color-background-base: #{$black-base};
+  --color-text-base: #{$white-light};
+  --color-text-rev-base: #{$black-base};
+}
+
+body {
+  background-color: var(--color-background-accent);
+
+  &.dark-theme {
+    background-color: $black-dark;
+
+    .todo-form, .todo-list {
+      background-color: $black-base;
+    }
+
+    .todo-card__title {
+      color: $white;
+    }
+  }
+
+  .todo-form, .todo-list {
+    background-color: $white-base;
+  }
+
+  .todo-card__title {
+    color: $black-base;
+  }
+}
+
+h1 {
+  font-size: 22px;
+  font-weight: 700;
+  color: $black-base;
+}
+
+h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: $black-base;
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: $black-base;
+}
+
+p {
+  font-size: 14px;
+  font-weight: 500;
+  color: $black-base;
+}

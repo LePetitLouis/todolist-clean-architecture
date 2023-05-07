@@ -3,13 +3,13 @@ import { Suspense } from 'react'
 import { store } from './store/store'
 import { Provider } from 'react-redux'
 
-import TodoList from './userinterface/components/todos/TodoList/TodoList'
+import HomePage from './userinterface/pages/home/HomePage'
 
 const App = () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <Provider store={store}>
-        <TodoList />
+        <HomePage />
       </Provider>
     </Suspense>
   )

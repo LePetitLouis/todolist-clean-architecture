@@ -9,9 +9,11 @@ import {
 } from 'react-redux';
 
 import todosSlice from "../domain/usecases/todos-slice";
+import settingsSlice from "../domain/usecases/settings-slice";
 
 export const reducer = combineReducers({
   todos: todosSlice,
+  settings: settingsSlice,
 })
 
 const persistConfig = {

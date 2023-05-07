@@ -1,5 +1,5 @@
 const fetchTodos = async () => {
-  const response = await fetch("https://jsonplaceholder.typicode.com/todos?_limit=3");
+  const response = await fetch("https://jsonplaceholder.typicode.com/todos?_limit=6");
   const todos = await response.json();
   return todos;
 };
