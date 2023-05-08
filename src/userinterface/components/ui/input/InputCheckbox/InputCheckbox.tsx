@@ -1,5 +1,7 @@
 import './InputCheckbox.scss';
 
+// import IconCheck from '../../../../shared/icons/icon-check.svg';
+
 interface InputCheckboxProps {
   checked: boolean;
   onChange: (e: any) => void;

@@ -1,17 +1,17 @@
 :root {
-  --font-color: #383D3E;
-  --font-color-light: #888888;
+  --font-color: #4E4E66;
+  --font-color-light: #98979C;
   --font-color-placeholder: #4E5559;
-  --background-color: #FFFFFF;
-  --background-color-light: #E7E9EE;
-  --link-color: #007AFF;
+  --background-color: #F8F8F8;
+  --background-color-light: #FFFFFF;
+  --link-color: #537AD5;
 }
 
 [data-theme="dark"] {
-  --font-color: #FFFFFF;
-  --font-color-light: #888888;
+  --font-color: #B5B7D0;
+  --font-color-light: #3D3F58;
   --font-color-placeholder: #4E5559;
-  --background-color: #131616;
-  --background-color-light: #383D3E;
-  --link-color: #007AFF;
+  --background-color: #181824;
+  --background-color-light: #25273D;
+  --link-color: #537AD5;
 }

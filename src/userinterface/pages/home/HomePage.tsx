@@ -12,7 +12,7 @@ const HomePage = () => {
 
   return (
     <section className="home-page">
-      {theme === 'dark-theme' ? (
+      {theme === 'dark' ? (
         <img src="/images/bg-desktop-dark.jpg" alt="Banner" className="home-page__banner" />
       ) : (
         <img src="/images/bg-desktop-light.jpg" alt="Banner" className="home-page__banner" />

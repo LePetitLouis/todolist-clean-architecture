@@ -5,6 +5,7 @@ import {
   selectTodos,
   myFetchTodos,
   myUpdateTodo,
+  myDeleteTodo,
 } from "../../../../domain/usecases/todos-slice";
 
 import { Todo } from "../../../../domain/entities/todos-types";
@@ -38,6 +39,10 @@ const TodoList = () => {
     );
   };
 
+  const deleteTodo = (id: number) => {
+    dispatch(myDeleteTodo(id))
+  }
+
   return (
     <section className="todo-list">
       <ul className="todo-list__container">
@@ -47,6 +52,7 @@ const TodoList = () => {
               key={todo.id}
               todo={todo}
               onToggle={() => updateTodo(todo)}
+              onDelete={() => deleteTodo(todo.id)}
             />
           </li>
         ))}
